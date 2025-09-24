@@ -58,6 +58,15 @@ class Program
         foreach (var pair in letterFrequency)
         {
             Console.WriteLine($"Буква '{pair.Key}': {pair.Value} раз");
+            var top = text.ToLower()
+                            .Where(char.IsLetter)
+                            .GroupBy(c => c)
+                            .OrderByDescending(g => g.Count())
+                            .Take(5);
+
+            Console.WriteLine("Топ-5 букв:");
+            foreach (var group in top)
+                Console.WriteLine($"  '{group.Key}': {group.Count()} раз");
         }
     }
 }
