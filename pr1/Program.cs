@@ -1,5 +1,4 @@
-﻿// See https://aka.ms/new-console-template for more information
-using System;
+﻿using System;
 class Program
 {
     static void Main()
@@ -14,5 +13,16 @@ class Program
         }
         Console.WriteLine($"Отлично! Вы ввели {userInput.Length} символов.");
         Console.WriteLine("Текст принят для дальнейшей обработки.");
+        string text = "Это пример текста с несколькими словами";
+
+        string[] words = text.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+        string shortest = words[0];
+
+        foreach (string word in words)
+        {
+            if (word.Length < shortest.Length)
+                shortest = word;
+        }
+        Console.WriteLine($"Самое короткое слово: '{shortest}'");
     }
 }
