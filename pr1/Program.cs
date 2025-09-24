@@ -24,5 +24,16 @@ class Program
                 shortest = word;
         }
         Console.WriteLine($"Самое короткое слово: '{shortest}'");
+        string predlo = "Первое предложение. Второе! Третье?";
+        // Предложения
+        int sentences = text.Split('.', '!', '?')
+                           .Count(s => !string.IsNullOrWhiteSpace(s));
+        // Буквы
+        char[] vowels = { 'а', 'е', 'ё', 'и', 'о', 'у', 'ы', 'э', 'ю', 'я', 'a', 'e', 'i', 'o', 'u' };
+        int vowelCount = text.ToLower().Count(c => vowels.Contains(c));
+        int consonantCount = text.ToLower().Count(c => char.IsLetter(c) && !vowels.Contains(c));
+
+        Console.WriteLine($"Предложения: {sentences}");
+        Console.WriteLine($"Гласные: {vowelCount}, Согласные: {consonantCount}");
     }
 }
