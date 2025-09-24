@@ -35,5 +35,30 @@ class Program
 
         Console.WriteLine($"Предложения: {sentences}");
         Console.WriteLine($"Гласные: {vowelCount}, Согласные: {consonantCount}");
+
+        string longest = words[0];
+
+        foreach (string word in words)
+        {
+            if (word.Length > longest.Length)
+                longest = word;
+        }
+        Console.WriteLine($"Самое длинное слово: '{longest}' (длина: {longest.Length})");
+
+        string textchaast = "Пример текста для анализа частоты букв";
+
+        // Статистика частотности букв
+        var letterFrequency = text.ToLower()
+                                 .Where(char.IsLetter)
+                                 .GroupBy(c => c)
+                                 .ToDictionary(g => g.Key, g => g.Count())
+                                 .OrderByDescending(pair => pair.Value);
+
+        // Вывод результатов
+        foreach (var pair in letterFrequency)
+        {
+            Console.WriteLine($"Буква '{pair.Key}': {pair.Value} раз");
+        }
     }
 }
+
